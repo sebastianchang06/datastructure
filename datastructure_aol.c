@@ -41,7 +41,7 @@ int isValidDescription(const char *desc){
             inWord = 1;
         }
     }
-    if (inWord) wordCount++;
+    if(inWord) wordCount++;
     return wordCount >= 2;
 }
 
@@ -49,7 +49,7 @@ int isTrieEmpty(TrieNode *node){
     if(node->isEndOfWord) return 0;
     for(int i = 0; i < ALPHABET_SIZE; i++){
         if(node->children[i]){
-            if (!isTrieEmpty(node->children[i])){
+            if(!isTrieEmpty(node->children[i])){
                 return 0;
             }
         }
@@ -153,15 +153,13 @@ int main()
                     printf("Input a new slang word [Must be >1 char & no space]: ");
                     fgets(word, sizeof(word), stdin);
                     word[strcspn(word, "\n")] = '\0';
-                    if(isValidWord(word)) 
-					break;
+                    if(isValidWord(word)) break;
                 }
                 while(1){
                     printf("Input description [Must be >2 words]: ");
                     fgets(description, sizeof(description), stdin);
                     description[strcspn(description, "\n")] = '\0';
-                    if(isValidDescription(description)) 
-					break;
+                    if(isValidDescription(description)) break;
                 }
                 if(search(root, word)){
                     insert(root, word, description);
